@@ -1,26 +1,40 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div>
+      <home></home>
+      <button @click="addName">增加name</button>
+    </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Home from './components/Home'
+import { computed } from 'vue';
 export default {
   name: 'App',
   components: {
-    HelloWorld
+      Home
+  }, 
+  data() {
+    return {
+      names: ['ass','eee','eerer']
+    }
+  },
+  methods: {
+    addName() {
+      this.names.push('dfdf')
+    }
+  },
+  provide() {
+    return {
+        name: 'why',
+        age: 18,
+        length: computed(() => this.names.length)   //todo: 如果直接写对象的话 this.data 是拿不到 需要包装成一个function  他这样的this就是对应当前的
+    }
+    
   }
+    
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
